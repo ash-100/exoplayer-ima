@@ -1,0 +1,132 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.google.ads.interactivemedia.v3.samples.exoplayerexample"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+9        android:targetSdkVersion="34" />
+10
+11    <!-- Required permissions for the IMA SDK -->
+12    <uses-permission android:name="android.permission.INTERNET" />
+12-->D:\Ashwin Jino\AdOnMo\Projects\ExoPlayerExample\app\src\main\AndroidManifest.xml:5:5-66
+12-->D:\Ashwin Jino\AdOnMo\Projects\ExoPlayerExample\app\src\main\AndroidManifest.xml:5:22-64
+13
+14    <!-- Required by ExoPlayer when targeting Android 13+ to be able to post notifications. -->
+15    <!-- See https://github.com/google/ExoPlayer/issues/10884 for more info. -->
+16    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+16-->D:\Ashwin Jino\AdOnMo\Projects\ExoPlayerExample\app\src\main\AndroidManifest.xml:9:5-76
+16-->D:\Ashwin Jino\AdOnMo\Projects\ExoPlayerExample\app\src\main\AndroidManifest.xml:9:22-74
+17    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+17-->[androidx.media3:media3-exoplayer:1.3.1] C:\Users\vashw\.gradle\caches\transforms-4\ab2a3a69009dda553d4ba48d092f646f\transformed\jetified-media3-exoplayer-1.3.1\AndroidManifest.xml:22:5-79
+17-->[androidx.media3:media3-exoplayer:1.3.1] C:\Users\vashw\.gradle\caches\transforms-4\ab2a3a69009dda553d4ba48d092f646f\transformed\jetified-media3-exoplayer-1.3.1\AndroidManifest.xml:22:22-76
+18    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
+18-->[com.google.ads.interactivemedia.v3:interactivemedia:3.31.0] C:\Users\vashw\.gradle\caches\transforms-4\f06e819e8f806d660942a86a8a4f8b81\transformed\jetified-interactivemedia-3.31.0\AndroidManifest.xml:13:5-79
+18-->[com.google.ads.interactivemedia.v3:interactivemedia:3.31.0] C:\Users\vashw\.gradle\caches\transforms-4\f06e819e8f806d660942a86a8a4f8b81\transformed\jetified-interactivemedia-3.31.0\AndroidManifest.xml:13:22-76
+19
+20    <uses-feature
+20-->[com.google.android.tv:tv-ads:1.0.0-alpha02] C:\Users\vashw\.gradle\caches\transforms-4\0b3d3a6cf992048f323b8729e2f7c61b\transformed\jetified-tv-ads-1.0.0-alpha02\AndroidManifest.xml:11:5-13:36
+21        android:name="android.software.leanback"
+21-->[com.google.android.tv:tv-ads:1.0.0-alpha02] C:\Users\vashw\.gradle\caches\transforms-4\0b3d3a6cf992048f323b8729e2f7c61b\transformed\jetified-tv-ads-1.0.0-alpha02\AndroidManifest.xml:12:9-49
+22        android:required="false" />
+22-->[com.google.android.tv:tv-ads:1.0.0-alpha02] C:\Users\vashw\.gradle\caches\transforms-4\0b3d3a6cf992048f323b8729e2f7c61b\transformed\jetified-tv-ads-1.0.0-alpha02\AndroidManifest.xml:13:9-33
+23    <uses-feature
+23-->[com.google.android.tv:tv-ads:1.0.0-alpha02] C:\Users\vashw\.gradle\caches\transforms-4\0b3d3a6cf992048f323b8729e2f7c61b\transformed\jetified-tv-ads-1.0.0-alpha02\AndroidManifest.xml:14:5-16:36
+24        android:name="android.hardware.touchscreen"
+24-->[com.google.android.tv:tv-ads:1.0.0-alpha02] C:\Users\vashw\.gradle\caches\transforms-4\0b3d3a6cf992048f323b8729e2f7c61b\transformed\jetified-tv-ads-1.0.0-alpha02\AndroidManifest.xml:15:9-52
+25        android:required="false" />
+25-->[com.google.android.tv:tv-ads:1.0.0-alpha02] C:\Users\vashw\.gradle\caches\transforms-4\0b3d3a6cf992048f323b8729e2f7c61b\transformed\jetified-tv-ads-1.0.0-alpha02\AndroidManifest.xml:16:9-33
+26
+27    <queries>
+27-->[com.google.android.tv:tv-ads:1.0.0-alpha02] C:\Users\vashw\.gradle\caches\transforms-4\0b3d3a6cf992048f323b8729e2f7c61b\transformed\jetified-tv-ads-1.0.0-alpha02\AndroidManifest.xml:20:5-24:15
+28        <package android:name="com.google.android.apps.tv.launcherx" />
+28-->[com.google.android.tv:tv-ads:1.0.0-alpha02] C:\Users\vashw\.gradle\caches\transforms-4\0b3d3a6cf992048f323b8729e2f7c61b\transformed\jetified-tv-ads-1.0.0-alpha02\AndroidManifest.xml:21:9-72
+28-->[com.google.android.tv:tv-ads:1.0.0-alpha02] C:\Users\vashw\.gradle\caches\transforms-4\0b3d3a6cf992048f323b8729e2f7c61b\transformed\jetified-tv-ads-1.0.0-alpha02\AndroidManifest.xml:21:18-69
+29        <package android:name="com.google.android.tvlauncher" />
+29-->[com.google.android.tv:tv-ads:1.0.0-alpha02] C:\Users\vashw\.gradle\caches\transforms-4\0b3d3a6cf992048f323b8729e2f7c61b\transformed\jetified-tv-ads-1.0.0-alpha02\AndroidManifest.xml:22:9-65
+29-->[com.google.android.tv:tv-ads:1.0.0-alpha02] C:\Users\vashw\.gradle\caches\transforms-4\0b3d3a6cf992048f323b8729e2f7c61b\transformed\jetified-tv-ads-1.0.0-alpha02\AndroidManifest.xml:22:18-62
+30        <package android:name="com.google.android.tvrecommendations" />
+30-->[com.google.android.tv:tv-ads:1.0.0-alpha02] C:\Users\vashw\.gradle\caches\transforms-4\0b3d3a6cf992048f323b8729e2f7c61b\transformed\jetified-tv-ads-1.0.0-alpha02\AndroidManifest.xml:23:9-72
+30-->[com.google.android.tv:tv-ads:1.0.0-alpha02] C:\Users\vashw\.gradle\caches\transforms-4\0b3d3a6cf992048f323b8729e2f7c61b\transformed\jetified-tv-ads-1.0.0-alpha02\AndroidManifest.xml:23:18-69
+31    </queries>
+32
+33    <permission
+33-->[androidx.core:core:1.9.0] C:\Users\vashw\.gradle\caches\transforms-4\0b1543d70f5c0b4fae2196a7dba9cb3e\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
+34        android:name="com.google.ads.interactivemedia.v3.samples.exoplayerexample.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+34-->[androidx.core:core:1.9.0] C:\Users\vashw\.gradle\caches\transforms-4\0b1543d70f5c0b4fae2196a7dba9cb3e\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
+35        android:protectionLevel="signature" />
+35-->[androidx.core:core:1.9.0] C:\Users\vashw\.gradle\caches\transforms-4\0b1543d70f5c0b4fae2196a7dba9cb3e\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
+36
+37    <uses-permission android:name="com.google.ads.interactivemedia.v3.samples.exoplayerexample.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+37-->[androidx.core:core:1.9.0] C:\Users\vashw\.gradle\caches\transforms-4\0b1543d70f5c0b4fae2196a7dba9cb3e\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
+37-->[androidx.core:core:1.9.0] C:\Users\vashw\.gradle\caches\transforms-4\0b1543d70f5c0b4fae2196a7dba9cb3e\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
+38
+39    <application
+39-->D:\Ashwin Jino\AdOnMo\Projects\ExoPlayerExample\app\src\main\AndroidManifest.xml:10:5-24:19
+40        android:allowBackup="true"
+40-->D:\Ashwin Jino\AdOnMo\Projects\ExoPlayerExample\app\src\main\AndroidManifest.xml:11:9-35
+41        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+41-->[androidx.core:core:1.9.0] C:\Users\vashw\.gradle\caches\transforms-4\0b1543d70f5c0b4fae2196a7dba9cb3e\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
+42        android:debuggable="true"
+43        android:extractNativeLibs="true"
+44        android:icon="@drawable/ic_launcher"
+44-->D:\Ashwin Jino\AdOnMo\Projects\ExoPlayerExample\app\src\main\AndroidManifest.xml:12:9-45
+45        android:label="@string/app_name"
+45-->D:\Ashwin Jino\AdOnMo\Projects\ExoPlayerExample\app\src\main\AndroidManifest.xml:13:9-41
+46        android:taskAffinity=""
+46-->D:\Ashwin Jino\AdOnMo\Projects\ExoPlayerExample\app\src\main\AndroidManifest.xml:14:9-32
+47        android:testOnly="true" >
+48        <activity
+48-->D:\Ashwin Jino\AdOnMo\Projects\ExoPlayerExample\app\src\main\AndroidManifest.xml:15:9-23:20
+49            android:name="com.google.ads.interactivemedia.v3.samples.exoplayerexample.MyActivity"
+49-->D:\Ashwin Jino\AdOnMo\Projects\ExoPlayerExample\app\src\main\AndroidManifest.xml:16:13-39
+50            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+50-->D:\Ashwin Jino\AdOnMo\Projects\ExoPlayerExample\app\src\main\AndroidManifest.xml:17:13-122
+51            android:exported="true" >
+51-->D:\Ashwin Jino\AdOnMo\Projects\ExoPlayerExample\app\src\main\AndroidManifest.xml:18:13-36
+52            <intent-filter>
+52-->D:\Ashwin Jino\AdOnMo\Projects\ExoPlayerExample\app\src\main\AndroidManifest.xml:19:13-22:29
+53                <action android:name="android.intent.action.MAIN" />
+53-->D:\Ashwin Jino\AdOnMo\Projects\ExoPlayerExample\app\src\main\AndroidManifest.xml:20:17-69
+53-->D:\Ashwin Jino\AdOnMo\Projects\ExoPlayerExample\app\src\main\AndroidManifest.xml:20:25-66
+54
+55                <category android:name="android.intent.category.LAUNCHER" />
+55-->D:\Ashwin Jino\AdOnMo\Projects\ExoPlayerExample\app\src\main\AndroidManifest.xml:21:17-77
+55-->D:\Ashwin Jino\AdOnMo\Projects\ExoPlayerExample\app\src\main\AndroidManifest.xml:21:27-74
+56            </intent-filter>
+57        </activity>
+58
+59        <meta-data
+59-->[androidx.media3:media3-exoplayer-ima:1.3.1] C:\Users\vashw\.gradle\caches\transforms-4\ca47875bf8defaf88cc7e92d33a49a77\transformed\jetified-media3-exoplayer-ima-1.3.1\AndroidManifest.xml:23:9-25:36
+60            android:name="com.google.android.gms.ads.AD_MANAGER_APP"
+60-->[androidx.media3:media3-exoplayer-ima:1.3.1] C:\Users\vashw\.gradle\caches\transforms-4\ca47875bf8defaf88cc7e92d33a49a77\transformed\jetified-media3-exoplayer-ima-1.3.1\AndroidManifest.xml:24:13-69
+61            android:value="true" />
+61-->[androidx.media3:media3-exoplayer-ima:1.3.1] C:\Users\vashw\.gradle\caches\transforms-4\ca47875bf8defaf88cc7e92d33a49a77\transformed\jetified-media3-exoplayer-ima-1.3.1\AndroidManifest.xml:25:13-33
+62        <meta-data
+62-->[androidx.media3:media3-exoplayer-ima:1.3.1] C:\Users\vashw\.gradle\caches\transforms-4\ca47875bf8defaf88cc7e92d33a49a77\transformed\jetified-media3-exoplayer-ima-1.3.1\AndroidManifest.xml:26:9-28:69
+63            android:name="com.google.android.gms.version"
+63-->[androidx.media3:media3-exoplayer-ima:1.3.1] C:\Users\vashw\.gradle\caches\transforms-4\ca47875bf8defaf88cc7e92d33a49a77\transformed\jetified-media3-exoplayer-ima-1.3.1\AndroidManifest.xml:27:13-58
+64            android:value="@integer/google_play_services_version" />
+64-->[androidx.media3:media3-exoplayer-ima:1.3.1] C:\Users\vashw\.gradle\caches\transforms-4\ca47875bf8defaf88cc7e92d33a49a77\transformed\jetified-media3-exoplayer-ima-1.3.1\AndroidManifest.xml:28:13-66
+65
+66        <activity
+66-->[com.google.android.tv:tv-ads:1.0.0-alpha02] C:\Users\vashw\.gradle\caches\transforms-4\0b3d3a6cf992048f323b8729e2f7c61b\transformed\jetified-tv-ads-1.0.0-alpha02\AndroidManifest.xml:27:9-31:20
+67            android:name="com.google.android.tv.ads.controls.FallbackImageActivity"
+67-->[com.google.android.tv:tv-ads:1.0.0-alpha02] C:\Users\vashw\.gradle\caches\transforms-4\0b3d3a6cf992048f323b8729e2f7c61b\transformed\jetified-tv-ads-1.0.0-alpha02\AndroidManifest.xml:28:13-84
+68            android:exported="false"
+68-->[com.google.android.tv:tv-ads:1.0.0-alpha02] C:\Users\vashw\.gradle\caches\transforms-4\0b3d3a6cf992048f323b8729e2f7c61b\transformed\jetified-tv-ads-1.0.0-alpha02\AndroidManifest.xml:29:13-37
+69            android:theme="@style/Theme.AppCompat.NoActionBar.Translucent" >
+69-->[com.google.android.tv:tv-ads:1.0.0-alpha02] C:\Users\vashw\.gradle\caches\transforms-4\0b3d3a6cf992048f323b8729e2f7c61b\transformed\jetified-tv-ads-1.0.0-alpha02\AndroidManifest.xml:30:13-75
+70        </activity>
+71        <activity
+71-->[com.google.android.gms:play-services-base:18.2.0] C:\Users\vashw\.gradle\caches\transforms-4\3bd964df45e85191b1a1e37402cc343d\transformed\jetified-play-services-base-18.2.0\AndroidManifest.xml:20:9-22:45
+72            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+72-->[com.google.android.gms:play-services-base:18.2.0] C:\Users\vashw\.gradle\caches\transforms-4\3bd964df45e85191b1a1e37402cc343d\transformed\jetified-play-services-base-18.2.0\AndroidManifest.xml:20:19-85
+73            android:exported="false"
+73-->[com.google.android.gms:play-services-base:18.2.0] C:\Users\vashw\.gradle\caches\transforms-4\3bd964df45e85191b1a1e37402cc343d\transformed\jetified-play-services-base-18.2.0\AndroidManifest.xml:22:19-43
+74            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+74-->[com.google.android.gms:play-services-base:18.2.0] C:\Users\vashw\.gradle\caches\transforms-4\3bd964df45e85191b1a1e37402cc343d\transformed\jetified-play-services-base-18.2.0\AndroidManifest.xml:21:19-78
+75    </application>
+76
+77</manifest>
