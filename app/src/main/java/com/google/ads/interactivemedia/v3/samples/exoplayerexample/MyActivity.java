@@ -6,10 +6,12 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.widget.TextView;
 import androidx.media3.common.MediaItem;
+import androidx.media3.common.Player;
 import androidx.media3.datasource.DataSource;
 import androidx.media3.datasource.DefaultDataSource;
 import androidx.media3.exoplayer.ExoPlayer;
@@ -26,17 +28,18 @@ import com.google.ads.interactivemedia.v3.api.AdEvent;
 public class MyActivity extends Activity {
 
   private static final String SAMPLE_VIDEO_URL =
-      "https://storage.googleapis.com/gvabox/media/samples/stock.mp4";
+          "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4";
   private static final String SAMPLE_VAST_TAG_URL =
-      "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/"
-          + "single_ad_samples&sz=640x480&cust_params=sample_ct%3Dlinear&ciu_szs=300x250%2C728x90"
-          + "&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=";
+          "https://pubads.g.doubleclick.net/gampad/ads?iu=/21775744923/external/"
+                  + "single_ad_samples&sz=640x480&cust_params=sample_ct%3Dlinear&ciu_szs=300x250%2C728x90"
+                  + "&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=";
   private static final String LOG_TAG = "ImaExoPlayerExample";
 
   private PlayerView playerView;
   private TextView logText;
   private ExoPlayer player;
   private ImaAdsLoader adsLoader;
+  private Player.Listener listener;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +51,9 @@ public class MyActivity extends Activity {
 
     // Create an AdsLoader.
     adsLoader =
-        new ImaAdsLoader.Builder(/* context= */ this)
-            .setAdEventListener(buildAdEventListener())
-            .build();
+            new ImaAdsLoader.Builder(/* context= */ this)
+                    .setAdEventListener(buildAdEventListener())
+                    .build();
   }
 
   public AdEvent.AdEventListener buildAdEventListener() {
@@ -58,17 +61,17 @@ public class MyActivity extends Activity {
     logText.setMovementMethod(new ScrollingMovementMethod());
 
     AdEvent.AdEventListener imaAdEventListener =
-        event -> {
-          AdEvent.AdEventType eventType = event.getType();
-          if (eventType == AdEvent.AdEventType.AD_PROGRESS) {
-            return;
-          }
-          String log = "IMA event: " + eventType;
-          if (logText != null) {
-            logText.append(log + "\n");
-          }
-          Log.i(LOG_TAG, log);
-        };
+            event -> {
+              AdEvent.AdEventType eventType = event.getType();
+              if (eventType == AdEvent.AdEventType.AD_PROGRESS) {
+                return;
+              }
+              String log = "IMA event: " + eventType;
+              if (logText != null) {
+                logText.append(log + "\n");
+              }
+              Log.i(LOG_TAG, log);
+            };
 
     return imaAdEventListener;
   }
@@ -127,6 +130,8 @@ public class MyActivity extends Activity {
   private void releasePlayer() {
     adsLoader.setPlayer(null);
     playerView.setPlayer(null);
+    player.removeListener(listener);
+    listener = null;
     player.release();
     player = null;
   }
@@ -136,28 +141,45 @@ public class MyActivity extends Activity {
     DataSource.Factory dataSourceFactory = new DefaultDataSource.Factory(this);
 
     MediaSource.Factory mediaSourceFactory =
-        new DefaultMediaSourceFactory(dataSourceFactory)
-            .setLocalAdInsertionComponents(unusedAdTagUri -> adsLoader, playerView);
+            new DefaultMediaSourceFactory(dataSourceFactory)
+                    .setLocalAdInsertionComponents(unusedAdTagUri -> adsLoader, playerView);
 
     // Create an ExoPlayer and set it as the player for content and ads.
     player = new ExoPlayer.Builder(this).setMediaSourceFactory(mediaSourceFactory).build();
     playerView.setPlayer(player);
     adsLoader.setPlayer(player);
 
-    // Create the MediaItem to play, specifying the content URI and ad tag URI.
-    Uri contentUri = Uri.parse(SAMPLE_VIDEO_URL);
-    Uri adTagUri = Uri.parse(SAMPLE_VAST_TAG_URL);
-    MediaItem mediaItem =
-        new MediaItem.Builder()
-            .setUri(contentUri)
-            .setAdsConfiguration(new MediaItem.AdsConfiguration.Builder(adTagUri).build())
-            .build();
-
     // Prepare the content and ad to be played with the SimpleExoPlayer.
-    player.setMediaItem(mediaItem);
+    player.setMediaItem(createMediaItem());
     player.prepare();
 
     // Set PlayWhenReady. If true, content and ads will autoplay.
-    player.setPlayWhenReady(false);
+    player.setPlayWhenReady(true);
+
+    listener =new Player.Listener() {
+      @Override
+      public void onPlaybackStateChanged(int playbackState) {
+        Player.Listener.super.onPlaybackStateChanged(playbackState);
+        if(playbackState == Player.STATE_ENDED){
+          player.clearMediaItems();
+          player.setMediaItem(createMediaItem());
+          player.prepare();
+          player.play();
+        }
+      }
+    };
+    player.addListener(listener);
+  }
+
+  private MediaItem createMediaItem(){
+    // Create the MediaItem to play, specifying the content URI and ad tag URI.
+    Uri contentUri = Uri.parse(SAMPLE_VIDEO_URL + '#'+ SystemClock.currentThreadTimeMillis());
+    Uri adTagUri = Uri.parse(SAMPLE_VAST_TAG_URL);
+    MediaItem mediaItem =
+            new MediaItem.Builder()
+                    .setUri(contentUri)
+                    .setAdsConfiguration(new MediaItem.AdsConfiguration.Builder(adTagUri).build())
+                    .build();
+    return mediaItem;
   }
 }
